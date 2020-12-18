@@ -9,13 +9,13 @@ const desks_data = [
 ];
 
 const DeskList = () => {
-  if (desks_data.length) {
+  if (!desks_data.length) {
     return null;
   }
 
   return (
     <CardGrid>
-      {desks_data.map(({ name }) => <DeskItem><h1>{name}</h1></DeskItem>)}
+      {desks_data.map(({ name }, i) => <DeskItem key={i}><h1>{name}</h1></DeskItem>)}
     </CardGrid>
   );
 };
