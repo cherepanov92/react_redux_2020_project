@@ -1,21 +1,42 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { CardGrid } from '@vkontakte/vkui';
+import firebase from 'firebase';
+
+// import 'firebase/analytics';
+// import 'firebase/auth';
+// import 'firebase/firestore';
 
 import DeskItem from './DeskItem';
 
-const desks_data = [
-  { name:'Доска 1' },
-  { name:'Доска 2' }
-];
 
 const DeskList = () => {
-  if (!desks_data.length) {
+  const [desks, setDesks] = useState([]);
+
+  // Запрос данных о досках
+  useEffect(() => {
+    const db = firebase.firestore();
+    
+    db.collection("desks").get().then((querySnapshot) => {
+      const desks_data = [];
+      
+      querySnapshot.forEach((doc) => {
+        desks_data.push({
+          id: doc.id, 
+          name: doc.data().name
+        });
+      })
+      
+      setDesks(desks_data);
+    });
+  }, [])
+
+  if (!desks.length) {
     return null;
   }
 
   return (
     <CardGrid>
-      {desks_data.map(({ name }, i) => <DeskItem key={i}><h1>{name}</h1></DeskItem>)}
+      {desks.map(({ name }, i) => <DeskItem key={i}><h1>{name}</h1></DeskItem>)}
     </CardGrid>
   );
 };
