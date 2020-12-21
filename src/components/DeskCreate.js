@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Button, Card, FormLayout, Input } from '@vkontakte/vkui';
 import { Icon24Add } from '@vkontakte/icons';
+import firebase from 'firebase';
 
 const modes = {
   button: 'button',
@@ -27,7 +28,6 @@ const DeskCreate = () => {
 
   const createDesk = (event) => {
     if (event) {
-      console.log('event')
       event.preventDefault();
     }
 
@@ -37,8 +37,12 @@ const DeskCreate = () => {
       return ;
     }
     
-    console.log('done');
-    reset();
+    const db = firebase.firestore();
+    
+    db.collection("desks").doc()
+    .set({ name })
+    .then(reset)
+    .catch(console.error);
   }
 
   if (mode === modes.button) {

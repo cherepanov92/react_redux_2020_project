@@ -1,11 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { CardGrid } from '@vkontakte/vkui';
 import firebase from 'firebase';
-
-// import 'firebase/analytics';
-// import 'firebase/auth';
-// import 'firebase/firestore';
-
 import DeskItem from './DeskItem';
 
 
