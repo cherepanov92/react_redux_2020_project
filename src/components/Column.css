@@ -1,0 +1,10 @@
+.Column {
+  box-sizing: border-box;
+}
+
+.Column__wrapper {
+  padding: 16px 0;
+  background-color: white;
+  border: 1px gray solid;
+  box-sizing: border-box;
+}
