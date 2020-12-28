@@ -4,6 +4,7 @@ import { View, Panel,Button  } from '@vkontakte/vkui';
 import '@vkontakte/vkui/dist/vkui.css';
 
 import Desks from './Desks';
+import Columns from './Columns';
 
 const panel = {
 	desks: 'desks',
@@ -11,7 +12,7 @@ const panel = {
 }
 
 const App = () => {
-	const [activePanel, setActivePanel] = useState(panel.desks)
+	const [activePanel, setActivePanel] = useState(panel.columns)
 
 	return (
 		<View activePanel={activePanel}>
@@ -20,11 +21,9 @@ const App = () => {
 				<Desks onChangePanel={() => setActivePanel(panel.columns)}/>
 			</Panel>
 
-			<Panel id={panel.columns} separator={false}>
-				<div>Панель колонок</div>
-				<Button onClick={() => setActivePanel(panel.desks)}>Перейти к доскам</Button>
+			<Panel id={panel.columns} separator={false} className="Columns">
+				<Columns onChangePanel={() => setActivePanel(panel.desks)}/>
 			</Panel>
-
 		</View>
 	);
 };
