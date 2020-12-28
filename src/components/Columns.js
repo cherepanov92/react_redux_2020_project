@@ -30,17 +30,13 @@ const Columns = () => {
   return (
     <Fragment>
       <PanelHeaderSimple>Доска</PanelHeaderSimple>
-
-      {columns.length ? (
-        <Gallery
-          className="Columns__list"
-          slideWidth="100%"
-          align="center"
-        >
-          {columns.map(({id}) => <Column key={id} />)}
-        </Gallery>
-      ): null}
-
+      <Gallery
+        className="Columns__list"
+        slideWidth="100%"
+        align="center"
+      >
+        {columns.map(({id}) => <Column key={id} />)}
+      </Gallery>
     </Fragment>
   )
 }
