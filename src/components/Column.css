@@ -8,3 +8,9 @@
   border: 1px gray solid;
   box-sizing: border-box;
 }
+
+.Column__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}

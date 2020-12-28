@@ -9,6 +9,7 @@ import ColumnCreate from './ColumnCreate';
 const Columns = () => {
   const [columns, setColumns] = useState([]);
   const newColumn = (column) => setColumns([...columns, column]);
+  const removeColumn = (removeId) => setColumns(columns.filter(({id}) => {return id !== removeId}));
 
   // Запрос данных о колонках
   useEffect(() => {
@@ -36,7 +37,7 @@ const Columns = () => {
         slideWidth="100%"
         align="center"
       >
-        {columns.map(({id, name}) => <Column key={id} name={name} />)}
+        {columns.map(({id, name}) => <Column key={id} id={id} name={name} onDelete={removeColumn} />)}
         
         <ColumnCreate onCreate={newColumn} />
       </Gallery>
