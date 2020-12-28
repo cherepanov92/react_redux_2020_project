@@ -1,14 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Div, Card, CardGrid } from '@vkontakte/vkui';
+import { Div, Card, CardGrid, Header } from '@vkontakte/vkui';
 
 import ColumnCard from './ColumnCard';
 import './Column.css';
 
-const Column = () => {
+const Column = ({ name }) => {
   return (
     <Div className="Column">
-      <Card mode="plain" className="Column__wrapper">
+      <Header>{name}</Header>
+      <Card className="Column__wrapper">
         <CardGrid>
           <ColumnCard>New card</ColumnCard>
         </CardGrid>
@@ -18,7 +19,7 @@ const Column = () => {
 }
 
 Column.propTypes = {
-  onChangePanel: PropTypes.func.isRequired,
+  name: PropTypes.string.isRequired,
 }
 
 export default Column;

@@ -1,13 +1,14 @@
 import React, { Fragment, useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
 import { PanelHeaderSimple, Gallery } from '@vkontakte/vkui';
 import firebase from 'firebase';
 
 import './Columns.css';
-import Column from "./Column";
+import Column from './Column';
+import ColumnCreate from './ColumnCreate';
 
 const Columns = () => {
   const [columns, setColumns] = useState([]);
+  const newColumn = (column) => setColumns([...columns, column]);
 
   // Запрос данных о колонках
   useEffect(() => {
@@ -29,13 +30,15 @@ const Columns = () => {
 
   return (
     <Fragment>
-      <PanelHeaderSimple>Доска</PanelHeaderSimple>
+      <PanelHeaderSimple>Колонка</PanelHeaderSimple>
       <Gallery
         className="Columns__list"
         slideWidth="100%"
         align="center"
       >
-        {columns.map(({id}) => <Column key={id} />)}
+        {columns.map(({id, name}) => <Column key={id} name={name} />)}
+        
+        <ColumnCreate onCreate={newColumn} />
       </Gallery>
     </Fragment>
   )
