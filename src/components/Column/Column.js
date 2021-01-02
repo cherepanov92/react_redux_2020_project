@@ -4,7 +4,7 @@ import { Div, Card, Header, Button } from '@vkontakte/vkui';
 import firebase from 'firebase';
 
 import './Column.css';
-import Cards from './Cards';
+import Cards from '../Cards/Cards';
 
 const Column = ({ id, name, onDelete }) => {
   const deleteItem = () => {

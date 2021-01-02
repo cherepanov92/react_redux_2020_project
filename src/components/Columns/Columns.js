@@ -3,8 +3,8 @@ import { PanelHeaderSimple, Gallery } from '@vkontakte/vkui';
 import firebase from 'firebase';
 
 import './Columns.css';
-import Column from './Column';
-import ColumnCreate from './ColumnCreate';
+import Column from '../Column/Column';
+import ColumnCreate from '../ColumnCreate/ColumnCreate';
 
 const Columns = () => {
   const [columns, setColumns] = useState([]);

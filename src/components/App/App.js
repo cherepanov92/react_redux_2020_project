@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 // import bridge from '@vkontakte/vk-bridge';
-import { View, Panel,Button  } from '@vkontakte/vkui';
+import { View, Panel, Button } from '@vkontakte/vkui';
 import '@vkontakte/vkui/dist/vkui.css';
 
-import Desks from './Desks';
-import Columns from './Columns';
+import Desks from '../Desks/Desks';
+import Columns from '../Columns/Columns';
 
 const panel = {
 	desks: 'desks',

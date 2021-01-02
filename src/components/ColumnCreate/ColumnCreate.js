@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import firebase from 'firebase';
 import { Div } from '@vkontakte/vkui';
 
-import CreateForm from './CreateForm';
-import './Column.css';
+import CreateForm from '../CreateForm/CreateForm';
+import './ColumnCreate.css';
 
 const ColumnCreate = ({ onCreate }) => {
   const createColumn = name => {
@@ -18,7 +18,7 @@ const ColumnCreate = ({ onCreate }) => {
   }
   
   return (
-    <Div className="Column">
+    <Div className="ColumnCreate">
       <CreateForm 
         onSubmit = {createColumn}
         placeholder = {'Введите название колонки'}
