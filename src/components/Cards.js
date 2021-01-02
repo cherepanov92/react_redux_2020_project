@@ -3,6 +3,8 @@ import ColumnCard from './ColumnCard';
 import { CardGrid } from '@vkontakte/vkui';
 import firebase from 'firebase';
 
+import CardCreate from './CardCreate';
+
 const Cards = () => {
   const [cards, setCards] = useState([]);
   const addCard = (card) => setCards([...cards, card]);
@@ -31,6 +33,7 @@ const Cards = () => {
 
   return (
     <CardGrid>
+      <CardCreate onCreate={addCard} />
       {cards.map(({ id, name }) => <ColumnCard key={id} id={id} onDelete={removeCard}>{name}</ColumnCard>)}
     </CardGrid>
   );
