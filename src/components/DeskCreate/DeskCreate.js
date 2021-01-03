@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import firebase from 'firebase';
 
-import CreateForm from './CreateForm';
+import CreateForm from '../CreateForm/CreateForm';
 
 const DeskCreate = ({ onCreate }) => {
   const createDesk = name => {
