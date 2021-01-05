@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useEffect } from 'react';
+import React, { Fragment, useState } from 'react';
 import PropTypes from 'prop-types';
 import { PanelHeaderSimple, Div } from '@vkontakte/vkui';
 
@@ -18,7 +18,7 @@ const Desks = ({ onChangePanel }) => {
         <DeskCreate onCreate={newDesk} />
       </Div>
 
-      <DeskList desks={desks} onDelete={removeDesk} onloadDesks={setDesks} />
+      <DeskList desks={desks} onDelete={removeDesk} onloadDesks={setDesks} onDeskClick={onChangePanel} />
     </Fragment>
   )
 }

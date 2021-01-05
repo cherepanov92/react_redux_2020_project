@@ -4,7 +4,7 @@ import DeskItem from '../DeskItem/DeskItem';
 import PropTypes from 'prop-types';
 import firebase from 'firebase';
 
-const DeskList = ({ desks, onDelete, onloadDesks }) => {
+const DeskList = ({ desks, onDelete, onloadDesks, onDeskClick }) => {
   // Запрос данных о досках
   useEffect(() => {
     const db = firebase.firestore();
@@ -29,7 +29,7 @@ const DeskList = ({ desks, onDelete, onloadDesks }) => {
 
   return (
     <CardGrid>
-      {desks.map(({ id, name })=> <DeskItem key={id} id={id} onDelete={onDelete}><p>{name}</p></DeskItem>)}
+      {desks.map(({ id, name }) => <DeskItem key={id} id={id} onClick={onDeskClick} onDelete={onDelete}><p>{name}</p></DeskItem>)}
     </CardGrid>
   );
 };
@@ -41,6 +41,7 @@ DeskList.propTypes = {
   })).isRequired,
   onDelete: PropTypes.func.isRequired,
   onloadDesks: PropTypes.func.isRequired,
+  onDeskClick: PropTypes.func.isRequired,
 };
 
 export default DeskList;

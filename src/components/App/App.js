@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 // import bridge from '@vkontakte/vk-bridge';
-import { View, Panel, Button } from '@vkontakte/vkui';
+import { View, Panel } from '@vkontakte/vkui';
 import '@vkontakte/vkui/dist/vkui.css';
 
 import Desks from '../../panels/Desks/Desks';
@@ -12,17 +12,19 @@ const panel = {
 }
 
 const App = () => {
-	const [activePanel, setActivePanel] = useState(panel.columns)
+	const [activePanel, setActivePanel] = useState(panel.desks);
+	const goToColumns = () => setActivePanel(panel.columns);
+	const goToDesks = () => setActivePanel(panel.desks);
 
 	return (
 		<View activePanel={activePanel}>
 
 			<Panel id={panel.desks} separator={false}>
-				<Desks onChangePanel={() => setActivePanel(panel.columns)}/>
+				<Desks onChangePanel={goToColumns}/>
 			</Panel>
 
 			<Panel id={panel.columns} separator={false} className="Columns">
-				<Columns onChangePanel={() => setActivePanel(panel.desks)}/>
+				<Columns goBack={goToDesks}/>
 			</Panel>
 		</View>
 	);

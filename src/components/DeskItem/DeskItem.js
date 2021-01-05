@@ -4,7 +4,7 @@ import { Card, Div, Button } from '@vkontakte/vkui';
 import firebase from 'firebase';
 import "./DeskItem.css";
 
-const DeskItem = ({ id, onDelete, children }) => {
+const DeskItem = ({ id, onClick, onDelete, children }) => {
   const deleteItem = () => {
     const db = firebase.firestore();
 
@@ -16,13 +16,13 @@ const DeskItem = ({ id, onDelete, children }) => {
   }
 
   return (
-    <Card size="l">
+    <Card 
+      size="l"
+      onClick={onClick}
+    >
       <Div className='DeskItem__content'>
         {children}
-        <Button 
-          mode="destructive" 
-          onClick={deleteItem}
-        >
+        <Button mode="destructive" onClick={deleteItem}>
           Удалить
         </Button>
       </Div>
@@ -32,6 +32,7 @@ const DeskItem = ({ id, onDelete, children }) => {
 
 DeskItem.propTypes = {
   id: PropTypes.string.isRequired,
+  onClick: PropTypes.func.isRequired,
   onDelete: PropTypes.func.isRequired,
   children: PropTypes.oneOfType([
     PropTypes.node, 

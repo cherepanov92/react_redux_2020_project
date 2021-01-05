@@ -1,12 +1,13 @@
 import React, { Fragment, useEffect, useState } from 'react';
-import { PanelHeaderSimple, Gallery } from '@vkontakte/vkui';
+import { PanelHeaderSimple, PanelHeaderBack, Gallery } from '@vkontakte/vkui';
+import PropType from 'prop-types';
 import firebase from 'firebase';
 
 import './Columns.css';
 import Column from '../../components/Column/Column';
 import ColumnCreate from '../../components/ColumnCreate/ColumnCreate';
 
-const Columns = () => {
+const Columns = ({ goBack }) => {
   const [columns, setColumns] = useState([]);
   const newColumn = (column) => setColumns([...columns, column]);
   const removeColumn = (removeId) => setColumns(columns.filter(({id}) => {return id !== removeId}));
@@ -31,7 +32,7 @@ const Columns = () => {
 
   return (
     <Fragment>
-      <PanelHeaderSimple>Колонка</PanelHeaderSimple>
+      <PanelHeaderSimple left={<PanelHeaderBack onClick={goBack} />}>Колонка</PanelHeaderSimple>
       <Gallery
         className="Columns__list"
         slideWidth="100%"
@@ -43,6 +44,10 @@ const Columns = () => {
       </Gallery>
     </Fragment>
   )
+}
+
+Columns.propType = {
+  goBack: PropType.func.isRequired,
 }
 
 export default Columns;
