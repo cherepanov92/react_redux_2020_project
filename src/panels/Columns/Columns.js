@@ -12,22 +12,25 @@ const Columns = ({ goBack, setColumns, columns, removeColumn, addColumn, desk })
   useEffect(() => {
     const db = firebase.firestore();
     
-    db.collection("columns").get().then((querySnapshot) => {
-      const columns = [];
-      
-      querySnapshot.forEach((doc) => {
-        const { deskId, name } = doc.data();
+    db.collection("columns")
+      .where("deskId", "==", desk.id)
+      .get()
+      .then((querySnapshot) => {
+        const columns = [];
+        
+        querySnapshot.forEach((doc) => {
+          const { deskId, name } = doc.data();
 
-        columns.push({
-          id: doc.id, 
-          deskId,
-          name,
+          columns.push({
+            id: doc.id, 
+            deskId,
+            name,
+          });
         });
-      });
 
-      setColumns(columns);
-    });
-  }, []);
+        setColumns(columns);
+      });
+    }, []);
 
   return (
     <Fragment>
