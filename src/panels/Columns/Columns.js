@@ -7,11 +7,7 @@ import './Columns.css';
 import Column from '../../components/Column/Column';
 import ColumnCreate from '../../components/ColumnCreate/ColumnCreate';
 
-const Columns = ({ goBack }) => {
-  const [columns, setColumns] = useState([]);
-  const newColumn = (column) => setColumns([...columns, column]);
-  const removeColumn = (removeId) => setColumns(columns.filter(({id}) => {return id !== removeId}));
-
+const Columns = ({ goBack, setColumns, columns, removeColumn, addColumn, desk }) => {
   // Запрос данных о колонках
   useEffect(() => {
     const db = firebase.firestore();
@@ -20,19 +16,22 @@ const Columns = ({ goBack }) => {
       const columns = [];
       
       querySnapshot.forEach((doc) => {
+        const { deskId, name } = doc.data();
+
         columns.push({
           id: doc.id, 
-          name: doc.data().name
+          deskId,
+          name,
         });
-      })
+      });
+
       setColumns(columns);
-      
     });
-  }, [])
+  }, []);
 
   return (
     <Fragment>
-      <PanelHeaderSimple left={<PanelHeaderBack onClick={goBack} />}>Колонка</PanelHeaderSimple>
+      <PanelHeaderSimple left={<PanelHeaderBack onClick={goBack} />}>Доска {desk.name}</PanelHeaderSimple>
       <Gallery
         className="Columns__list"
         slideWidth="100%"
@@ -40,7 +39,7 @@ const Columns = ({ goBack }) => {
       >
         {columns.map(({id, name}) => <Column key={id} id={id} name={name} onDelete={removeColumn} />)}
         
-        <ColumnCreate onCreate={newColumn} />
+        <ColumnCreate onCreate={addColumn} />
       </Gallery>
     </Fragment>
   )
@@ -48,6 +47,18 @@ const Columns = ({ goBack }) => {
 
 Columns.propType = {
   goBack: PropType.func.isRequired,
-}
+  setColumns: PropType.func.isRequired,
+  columns: PropType.arrayOf(PropType.shape({
+    id: PropType.string.isRequired,
+    name: PropType.string.isRequired,
+    deskId: PropType.string.isRequired,
+  })).isRequired,
+  removeColumn: PropType.func.isRequired,
+  addColumn: PropType.func.isRequired,
+  desk: PropType.shape({
+    id: PropType.string.isRequired,
+    name: PropType.string.isRequired,
+  }).isRequired,
+};
 
 export default Columns;

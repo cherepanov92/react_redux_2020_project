@@ -29,7 +29,14 @@ const DeskList = ({ desks, onDelete, onloadDesks, onDeskClick }) => {
 
   return (
     <CardGrid>
-      {desks.map(({ id, name }) => <DeskItem key={id} id={id} onClick={onDeskClick} onDelete={onDelete}><p>{name}</p></DeskItem>)}
+      {desks.map(({ id, name }) => <DeskItem 
+        key={id} 
+        id={id} 
+        onClick={() => onDeskClick(id)} 
+        onDelete={onDelete}
+      >
+        {name}
+      </DeskItem>)}
     </CardGrid>
   );
 };
