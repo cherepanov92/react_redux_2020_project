@@ -4,12 +4,12 @@ import firebase from 'firebase';
 
 import CreateForm from '../CreateForm/CreateForm';
 
-const CardCreate = ({ onCreate }) => {
+const CardCreate = ({ onCreate, columnId }) => {
   const createCard = name => {
     const db = firebase.firestore();
     
     return db.collection("cards")
-      .add({name})
+      .add({ name, columnId })
       .then((docRef) => docRef.get())
       .then(doc => onCreate({ id:doc.id, ...doc.data() }))
       .catch(console.error)
@@ -26,6 +26,7 @@ const CardCreate = ({ onCreate }) => {
 
 CardCreate.propTypes = {
   onCreate: PropTypes.func.isRequired,
+  columnId: PropTypes.string.isRequired,
 }
 
 export default CardCreate;

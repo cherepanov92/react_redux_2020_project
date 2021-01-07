@@ -29,7 +29,7 @@ const Column = ({ id, name, onDelete }) => {
         </Button>
       </div>
       <Card className="Column__wrapper">
-        <Cards />
+        <Cards columnId={id} />
       </Card>
     </Div>
   )
