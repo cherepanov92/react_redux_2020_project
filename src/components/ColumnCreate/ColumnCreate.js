@@ -6,12 +6,12 @@ import { Div } from '@vkontakte/vkui';
 import CreateForm from '../CreateForm/CreateForm';
 import './ColumnCreate.css';
 
-const ColumnCreate = ({ onCreate }) => {
-  const createColumn = name => {
+const ColumnCreate = ({ onCreate, deskId }) => {
+  const createColumn = (name) => {
     const db = firebase.firestore();
     
     return db.collection("columns")
-    .add({name})
+    .add({name, deskId})
     .then((docRef) => docRef.get())
     .then(doc => onCreate({ id: doc.id, ...doc.data() }))
     .catch(console.error)
@@ -30,6 +30,7 @@ const ColumnCreate = ({ onCreate }) => {
 
 ColumnCreate.propTypes = {
   onCreate: PropTypes.func.isRequired,
+  deskId: PropTypes.string.isRequired,
 }
 
 export default ColumnCreate;

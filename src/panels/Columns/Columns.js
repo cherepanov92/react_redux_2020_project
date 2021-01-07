@@ -39,7 +39,7 @@ const Columns = ({ goBack, setColumns, columns, removeColumn, addColumn, desk })
       >
         {columns.map(({id, name}) => <Column key={id} id={id} name={name} onDelete={removeColumn} />)}
         
-        <ColumnCreate onCreate={addColumn} />
+        <ColumnCreate onCreate={addColumn} deskId={desk.id} />
       </Gallery>
     </Fragment>
   )
