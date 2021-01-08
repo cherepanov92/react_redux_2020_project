@@ -4,7 +4,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 // import bridge from "@vkontakte/vk-bridge";
 import App from "./components/App/App";
-import * as backend from './models/firebase';
+import * as backend from './actions';
 
 // Init VK  Mini App
 // bridge.send("VKWebAppInit");
