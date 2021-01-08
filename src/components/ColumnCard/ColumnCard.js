@@ -1,19 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Card, Div, Button } from '@vkontakte/vkui';
-import firebase from 'firebase';
 
 import './ColumnCard.css';
+import { deleteCard } from '../../actions';
 
 const ColumnCard = ({ id, onDelete, children }) => {
-  const deleteCard = () => {
-    const db = firebase.firestore();
-
-    db.collection("cards")
-    .doc(id)
-    .delete()
+  const deleteItem = () => {
+    deleteCard(id)
     .then(() => onDelete(id))
-    .catch(console.error)
+    .catch(console.error);
   }
 
   return (
@@ -23,7 +19,7 @@ const ColumnCard = ({ id, onDelete, children }) => {
 
         <Button 
           mode="destructive" 
-          onClick={deleteCard}
+          onClick={deleteItem}
         >
           Удалить
         </Button>

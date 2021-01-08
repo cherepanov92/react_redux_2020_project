@@ -1,7 +1,7 @@
-import React, { Fragment, useEffect, useState } from 'react';
+import React, { Fragment, useEffect } from 'react';
 import { PanelHeaderSimple, PanelHeaderBack, Gallery } from '@vkontakte/vkui';
 import PropType from 'prop-types';
-import firebase from 'firebase';
+import { getColumns } from '../../actions';
 
 import './Columns.css';
 import Column from '../../components/Column/Column';
@@ -10,27 +10,10 @@ import ColumnCreate from '../../components/ColumnCreate/ColumnCreate';
 const Columns = ({ goBack, setColumns, columns, removeColumn, addColumn, desk }) => {
   // Запрос данных о колонках
   useEffect(() => {
-    const db = firebase.firestore();
-    
-    db.collection("columns")
-      .where("deskId", "==", desk.id)
-      .get()
-      .then((querySnapshot) => {
-        const columns = [];
-        
-        querySnapshot.forEach((doc) => {
-          const { deskId, name } = doc.data();
-
-          columns.push({
-            id: doc.id, 
-            deskId,
-            name,
-          });
-        });
-
-        setColumns(columns);
-      });
-    }, []);
+    getColumns(desk.id)
+    // .then(columns => setColumns(columns))
+    .then(setColumns); // Аналог строчки выше
+  }, []);
 
   return (
     <Fragment>

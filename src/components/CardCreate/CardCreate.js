@@ -1,23 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import firebase from 'firebase';
 
 import CreateForm from '../CreateForm/CreateForm';
+import { createCard } from '../../actions';
 
 const CardCreate = ({ onCreate, columnId }) => {
-  const createCard = name => {
-    const db = firebase.firestore();
-    
-    return db.collection("cards")
-      .add({ name, columnId })
-      .then((docRef) => docRef.get())
-      .then(doc => onCreate({ id:doc.id, ...doc.data() }))
-      .catch(console.error)
+  const createItem = name => {
+    return createCard(name, columnId)
+    .then(doc => onCreate({ id:doc.id, ...doc.data() }))
+    .catch(console.error);
   }
   
   return (
     <CreateForm 
-      onSubmit = {createCard}
+      onSubmit = {createItem}
       placeholder = {'Введите название карточки'}
       actionTitle = {'Создать карточку'}
     />
