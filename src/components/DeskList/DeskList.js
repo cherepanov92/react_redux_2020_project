@@ -1,27 +1,17 @@
 import React, { useEffect } from 'react';
-import { CardGrid } from '@vkontakte/vkui';
-import DeskItem from '../DeskItem/DeskItem';
 import PropTypes from 'prop-types';
-import firebase from 'firebase';
+import { CardGrid } from '@vkontakte/vkui';
+
+import DeskItem from '../DeskItem/DeskItem';
+import { getDesks } from '../../actions';
 
 const DeskList = ({ desks, onDelete, onloadDesks, onDeskClick }) => {
   // Запрос данных о досках
   useEffect(() => {
-    const db = firebase.firestore();
-    
-    db.collection("desks").get().then((querySnapshot) => {
-      const desks_data = [];
-      
-      querySnapshot.forEach((doc) => {
-        desks_data.push({
-          id: doc.id, 
-          name: doc.data().name
-        });
-      })
-      
-      onloadDesks(desks_data);
-    });
-  }, [])
+    getDesks()
+    // .then(desks => onloadDesks(desks))
+    .then(onloadDesks) // то-же самое что и пример сверху
+  }, []);
 
   if (!desks.length) {
     return null;
@@ -29,14 +19,16 @@ const DeskList = ({ desks, onDelete, onloadDesks, onDeskClick }) => {
 
   return (
     <CardGrid>
-      {desks.map(({ id, name }) => <DeskItem 
-        key={id} 
-        id={id} 
-        onClick={() => onDeskClick(id)} 
-        onDelete={onDelete}
-      >
-        {name}
-      </DeskItem>)}
+      {desks.map(({ id, name }) => (
+        <DeskItem 
+          key={id} 
+          id={id} 
+          onClick={() => onDeskClick(id)} 
+          onDelete={onDelete}
+        >
+          {name}
+        </DeskItem>
+      ))}
     </CardGrid>
   );
 };
