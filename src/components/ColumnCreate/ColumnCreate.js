@@ -8,9 +8,9 @@ import './ColumnCreate.css';
 
 const ColumnCreate = ({ onCreate, deskId }) => {
   const createItem = (name) => {
-    createColumn(name, deskId)
+    return createColumn(name, deskId)
     .then(doc => onCreate({ id: doc.id, ...doc.data() }))
-    .catch(console.error);
+    .catch(console.error)
   }
   
   return (
