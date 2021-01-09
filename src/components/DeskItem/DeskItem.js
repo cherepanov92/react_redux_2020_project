@@ -1,21 +1,24 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import { Card, Div, Button } from '@vkontakte/vkui';
 
 import { deleteDesk } from '../../actions';
 import './DeskItem.css';
+import Context from '../App/context';
 
-const DeskItem = ({ id, onClick, onDelete, children }) => {
+const DeskItem = ({ id, children }) => {
+  const { removeDesk, goToColumns } = useContext(Context);
+
   const deleteItem = () => {
     deleteDesk(id)
-    .then(() => onDelete(id))
+    .then(() => removeDesk(id))
     .catch(console.error);
   }
 
   return (
     <Card 
       size="l"
-      onClick={onClick}
+      onClick={() => goToColumns(id)}
     >
       <Div className='DeskItem__content'>
         {children}
@@ -29,8 +32,6 @@ const DeskItem = ({ id, onClick, onDelete, children }) => {
 
 DeskItem.propTypes = {
   id: PropTypes.string.isRequired,
-  onClick: PropTypes.func.isRequired,
-  onDelete: PropTypes.func.isRequired,
   children: PropTypes.oneOfType([
     PropTypes.node, 
     PropTypes.arrayOf(PropTypes.node)
