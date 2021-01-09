@@ -1,34 +1,64 @@
-[<img width="134" src="https://vk.com/images/apps/mini_apps/vk_mini_apps_logo.svg">](https://vk.com/services)
+[<img width="134" src="https://www.udemy.com/staticx/udemy/images/v6/logo-coral.svg">](https://www.udemy.com/course/react-redux-2020/)
 
-# Create VK Mini App [![npm][npm]][npm-url] [![deps][deps]][deps-url]
+# Мой путь прохождения курса "React + Redux 2020, с нуля до про" от udemy.
 
-## How to install
+## Чему я научился за время прохождения курса
 
-### Create VK Mini App with gh-pages deploy
+* Как работает реакт
+    - [x] Рендеринг браузера
+    - [x] Разметка на реакт
+    - [x] Create-react-app
+    - [x] Настройка окружения
 
-`npx @vkontakte/create-vk-mini-app <app-directory-name>`
+* Делаю MVP канбана
+    - [x] Проектирование на бумажке
+    - [x] Создание бекенда в Firebase и запуск проекта
+    - [x] Создание структуры приложения
 
-### Create VK Mini App with Zeit deploy
+* Рефакторинг и архитектура
+    - [x] Рефакторинг бекенда
+    - [x] Рефакторинг состояния в App, используя кастомные хуки
+    - [x] Рефакторинг состояния используя контекст реакта
 
-Firstly, you have to create Zeit account and connect it with your GitHub profile — https://zeit.co/
+* Классовые компоненты против функциональных
+* Роутер, router-5
+* Роутер, react-router
+* Redux
+    - [ ] Архитектура Redux
+    - [ ] Переписываем useAppState на редакс
+    - [ ] Redux Devtools Extension
+    - [ ] Асинхронность в экшенах, redux-thunk
+    - [ ] Миддлвэры
 
-`npx @vkontakte/create-vk-mini-app <app-directory-name> --zeit`
+* Рефакторинг и паттерны в реакте
+    - [ ] Рефакторинг анимации
+    - [ ] Порталы
+    - [ ] Хоки и рендер пропы
 
-### Create VK Mini App with Surge deploy
+* Рефакторинг и архитектура
+    - [ ] Селекторы
+    - [ ] Разделение экшенов по фичам
+    - [ ] Разделение селекторов и экшнтайпов по фичам
+    - [ ] Рефакторинг состояния
+    - [ ] Подключение маркдауна
 
-Firstly, you have to create Surge account and Surge-domain — https://surge.sh/
+* Оптимизация и производительность
+    - [ ] Откуда вообще берутся лаги
+    - [ ] Следим за сборщиком мусора
+    - [ ] Вычисляем утечки памяти
+    - [ ] Вычисляем долгие скрипты
+    - [ ] Профайлер реакта, понимаем React.memo
+    - [ ] useCallback
+    - [ ] useMemo
+    - [ ] Подключаем why-did-you-render
+    - [ ] lazy и Suspense
+    - [ ] Оптимизация проекта
 
-`npx @vkontakte/create-vk-mini-app <app-directory-name> --surge <surge-domain>`
+* Финал
+    - [ ] Деплой приложения
+    - [ ] redux-toolkit
+    - [ ] TypeScript и тесты
+    - [ ] Остальные библиотеки
+    - [ ] React Native
+    - [ ] Нативный JS, алгоритмы и паттерны
 
-## How to start work with app
-
-Go to created folder and run:
-`yarn start` || `npm start` — this will start dev server with hot reload on `localhost:10888`.
-
-`yarn run build` || `npm run build` — this will build production bundle, with tree-shaking, uglify and all this modern fancy stuff
-
-[npm]: https://img.shields.io/npm/v/@vkontakte/create-vk-mini-app.svg
-[npm-url]: https://npmjs.com/package/@vkontakte/create-vk-mini-app
-
-[deps]: https://img.shields.io/david/vkcom/create-vk-mini-app.svg
-[deps-url]: https://david-dm.org/vkcom/create-vk-mini-app
