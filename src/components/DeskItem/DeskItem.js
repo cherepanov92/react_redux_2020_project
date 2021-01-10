@@ -9,7 +9,9 @@ import Context from '../App/context';
 const DeskItem = ({ id, children }) => {
   const { removeDesk, goToColumns } = useContext(Context);
 
-  const deleteItem = () => {
+  const deleteItem = (event) => {
+    event.stopPropagation();
+    
     deleteDesk(id)
     .then(() => removeDesk(id))
     .catch(console.error);
