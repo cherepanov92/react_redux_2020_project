@@ -1,50 +1,35 @@
-import React, { Fragment, useEffect } from 'react';
+import React, { Fragment, useEffect, useContext } from 'react';
 import { PanelHeaderSimple, PanelHeaderBack, Gallery } from '@vkontakte/vkui';
-import PropType from 'prop-types';
 import { getColumns } from '../../actions';
 
 import './Columns.css';
 import Column from '../../components/Column/Column';
 import ColumnCreate from '../../components/ColumnCreate/ColumnCreate';
+import Context from '../../components/App/context';
 
-const Columns = ({ goBack, setColumns, columns, removeColumn, addColumn, desk }) => {
+const Columns = () => {
+  const { goToDesks, setColumns, columns, activeDesk } = useContext(Context);
   // Запрос данных о колонках
   useEffect(() => {
-    getColumns(desk.id)
+    getColumns(activeDesk.id)
     // .then(columns => setColumns(columns))
     .then(setColumns); // Аналог строчки выше
   }, []);
 
   return (
     <Fragment>
-      <PanelHeaderSimple left={<PanelHeaderBack onClick={goBack} />}>Доска {desk.name}</PanelHeaderSimple>
+      <PanelHeaderSimple left={<PanelHeaderBack onClick={goToDesks} />}>Доска {activeDesk.name}</PanelHeaderSimple>
       <Gallery
         className="Columns__list"
         slideWidth="100%"
         align="center"
       >
-        {columns.map(({id, name}) => <Column key={id} id={id} name={name} onDelete={removeColumn} />)}
+        {columns.map(({id, name}) => <Column key={id} id={id} name={name} />)}
         
-        <ColumnCreate onCreate={addColumn} deskId={desk.id} />
+        <ColumnCreate />
       </Gallery>
     </Fragment>
   )
 }
-
-Columns.propType = {
-  goBack: PropType.func.isRequired,
-  setColumns: PropType.func.isRequired,
-  columns: PropType.arrayOf(PropType.shape({
-    id: PropType.string.isRequired,
-    name: PropType.string.isRequired,
-    deskId: PropType.string.isRequired,
-  })).isRequired,
-  removeColumn: PropType.func.isRequired,
-  addColumn: PropType.func.isRequired,
-  desk: PropType.shape({
-    id: PropType.string.isRequired,
-    name: PropType.string.isRequired,
-  }).isRequired,
-};
 
 export default Columns;
