@@ -1,14 +1,17 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import PropTypes from 'prop-types';
 import { Card, Div, Button } from '@vkontakte/vkui';
 
 import './ColumnCard.css';
 import { deleteCard } from '../../actions';
+import Context from '../App/context';
 
-const ColumnCard = ({ id, onDelete, children }) => {
+const ColumnCard = ({ id, children }) => {
+  const { removeCard } = useContext(Context);
+  
   const deleteItem = () => {
     deleteCard(id)
-    .then(() => onDelete(id))
+    .then(() => removeCard(id))
     .catch(console.error);
   }
 
@@ -30,7 +33,6 @@ const ColumnCard = ({ id, onDelete, children }) => {
 
 ColumnCard.propTypes = {
   id: PropTypes.string.isRequired,
-  onDelete: PropTypes.func.isRequired,
   children: PropTypes.node.isRequired,
 };
 

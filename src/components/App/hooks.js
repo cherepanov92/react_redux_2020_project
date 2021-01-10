@@ -29,15 +29,24 @@ const useNavState = (desks) => {
 	return { activePanel, activeDesk, goToColumns, goToDesks };
 };
 
+const useCardsState = () => {
+  const [cards, setCards] = useState([]);
+  const addCard = (card) => setCards([...cards, card]);
+  const removeCard = (removeId) => setCards(cards.filter(({id}) => {return id !== removeId}));
+
+	return {cards, setCards, addCard, removeCard};
+};
 
 export const useAppState = () => {
   const desksState = useDesksState();
   const columnsState = useColumnsState();
 	const navState = useNavState(desksState.desks);
+	const cardsState = useCardsState();
 	
   return {
 		...desksState, 
 		...columnsState, 
-		...navState
+		...navState,
+		...cardsState,
   };
 };
