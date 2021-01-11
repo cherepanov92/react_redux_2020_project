@@ -16,17 +16,8 @@ const ColumnCard = ({ id, children }) => {
   }
 
   return (
-    <Card size='l'>
-      <Div className='ColumnCard__wrapper'>
-        {children}
-
-        <Button 
-          mode="destructive" 
-          onClick={deleteItem}
-        >
-          Удалить
-        </Button>
-      </Div>
+    <Card size='l' mode='outline'>
+      <Div className='ColumnCard__wrapper'>{children}</Div>
     </Card>
   )
 }
