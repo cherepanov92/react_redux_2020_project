@@ -1,48 +1,25 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { Button, Card, FormLayout, Input } from '@vkontakte/vkui';
 import { Icon24Add } from '@vkontakte/icons';
 
-const modes = {
-  button: 'button',
-  form: 'form'
-};
-
-const statuses = {
-  default: 'default',
-  error: 'error'
-};
+import { useCreateForm } from './hooks';
 
 const CreateForm = ({ onSubmit, placeholder, actionTitle }) => {
-  const [mode, setMode] = useState(modes.button);
-  const [name, setName] = useState('');
-  const [status, setStatus] = useState(statuses.dafault);
+  const {
+    name,
+    status,
+    reset,
+    submit,
+    setFormMode,
+    onChangeInput,
+    isButtonMode,
+  } = useCreateForm(onSubmit);
 
-  // Установка дефолтных переметорв
-  const reset = () => {
-    setMode(modes.button);
-    setName('');
-    setStatus(statuses.default);
-  };
-
-  const submit = (event) => {
-    if (event) {
-      event.preventDefault();
-    }
-
-    // Валидация на пустое поле (или поле состящие из пробелов) 
-    if (!name.trim().length) {
-      setStatus(statuses.error);
-      return;
-    }
-
-    onSubmit(name).then(reset);
-  };
-
-  if (mode === modes.button) {
+  if (isButtonMode) {
     return (
       <Button 
-        onClick={() => {setMode(modes.form)}} 
+        onClick={() => {setFormMode}} 
         before={<Icon24Add />} 
         size="xl"
       >
@@ -58,7 +35,7 @@ const CreateForm = ({ onSubmit, placeholder, actionTitle }) => {
           status={status} 
           autoFocus={true}
           value={name} 
-          onChange={(event) => setName(event.target.value)}
+          onChange={onChangeInput}
           placeholder={placeholder}
         />
         <div>
