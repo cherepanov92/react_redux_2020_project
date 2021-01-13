@@ -42,12 +42,6 @@ const Column = ({ id, name }) => {
         >
           <Icon16MoreHorizontal/>
         </Button>
-        {/* <Button 
-          mode="destructive" 
-          onClick={deleteItem}
-        >
-          Удалить
-        </Button> */}
       </div>
       <Card className="Column__wrapper">
         <Cards columnId={id} />

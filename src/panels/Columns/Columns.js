@@ -21,8 +21,8 @@ const Columns = () => {
       <PanelHeaderSimple left={<PanelHeaderBack onClick={goToDesks} />}>Доска {activeDesk.name}</PanelHeaderSimple>
       <Gallery
         className="Columns__list"
-        slideWidth="100%"
-        align="center"
+        slideWidth="95%"
+        align="left"
       >
         {columns.map(({id, name}) => <Column key={id} id={id} name={name} />)}
         
