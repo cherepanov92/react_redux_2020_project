@@ -18,14 +18,19 @@ const CardCreateForm = ({ onSubmit }) => {
 
   if (isButtonMode) {
     return (
-      <Button onClick={setFormMode} before={<Icon24Add />} size="xl" mode="outline">
+      <Button 
+        onClick={setFormMode} 
+        before={<Icon24Add />} 
+        size="l" stretched 
+        mode="outline"
+      >
         Добавить карточку
       </Button>
     )
   };
   
   return (
-    <Card size="l" mode="shadow">
+    <Card size="l" mode="outline">
       <FormLayout onSubmit={submit}>
         <Input 
           status={status} 
