@@ -1,6 +1,4 @@
-import React, { useState } from 'react';
-import PropTypes from 'prop-types';
-
+import { useState } from 'react';
 
 const modes = {
   button: 'button',
@@ -40,9 +38,9 @@ export const useCreateForm = ({ onSubmit }) => {
     onSubmit(name).then(reset);
   };
 
-  
-  const setFormMode = () => {modes.form};
-  const setButtonMode = () => {modes.button};
+  const setFormMode = () => setMode(modes.form);
+
+  const setButtonMode = () => setMode(modes.button);
 
   return {
     name,
