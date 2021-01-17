@@ -3,7 +3,7 @@ import { createColumn } from '../../actions';
 import { Div } from '@vkontakte/vkui';
 
 import './ColumnCreate.css';
-import CreateForm from '../CreateForm/CreateForm';
+import ColumnCreateForm from './ColumnCreateForm';
 import Context from '../App/context';
 
 const ColumnCreate = () => {
@@ -17,10 +17,8 @@ const ColumnCreate = () => {
   
   return (
     <Div className="ColumnCreate">
-      <CreateForm 
+      <ColumnCreateForm 
         onSubmit = {createItem}
-        placeholder = {'Введите название колонки'}
-        actionTitle  = {'Создать колонку'}
       />
     </Div>
   )
