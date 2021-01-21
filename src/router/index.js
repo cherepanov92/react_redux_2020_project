@@ -1,9 +1,14 @@
 import createRouter from 'router5';
 import browserPlugin from 'router5-plugin-browser';
 
+export const pages = {
+  DESKS: 'desks',
+  COLUMNS: 'columns',
+}
+
 const routes = [
-  { name: 'desks', path: '/' },
-  { name: 'columns', path: '/desk' }
+  { name: pages.DESKS, path: '/' },
+  { name: pages.COLUMNS, path: '/desk' }
 ];
 
 export const initialize = () => {
