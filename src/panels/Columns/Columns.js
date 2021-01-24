@@ -1,24 +1,30 @@
 import React, { Fragment, useEffect, useContext } from 'react';
 import { PanelHeaderSimple, PanelHeaderBack, Gallery } from '@vkontakte/vkui';
-import { getColumns } from '../../actions';
+import { useRoute } from 'react-router5';
 
 import './Columns.css';
 import Column from '../../components/Column/Column';
 import ColumnCreate from '../../components/ColumnCreate/ColumnCreate';
+import { getColumns } from '../../actions';
 import Context from '../../components/App/context';
 
 const Columns = () => {
-  const { goToDesks, setColumns, columns, activeDesk } = useContext(Context);
+  const { goToDesks, setColumns, columns, desks } = useContext(Context);
+  const { route: { params: { deskId }} } = useRoute();
+  const desk = desks.find(({ id }) => id === deskId) || {};
+
   // Запрос данных о колонках
   useEffect(() => {
-    getColumns(activeDesk.id)
-    // .then(columns => setColumns(columns))
-    .then(setColumns); // Аналог строчки выше
-  }, []);
+    if(desk.id) {
+      getColumns(desk.id)
+      // .then(columns => setColumns(columns))
+      .then(setColumns); // Аналог строчки выше
+    }
+  }, [desk]);
 
   return (
     <Fragment>
-      <PanelHeaderSimple left={<PanelHeaderBack onClick={goToDesks} />}>Доска {activeDesk.name}</PanelHeaderSimple>
+      <PanelHeaderSimple left={<PanelHeaderBack onClick={goToDesks} />}>Доска {desk.name ? `${desk.name}` : ""}</PanelHeaderSimple>
       <Gallery
         className="Columns__list"
         slideWidth="95%"

@@ -8,11 +8,11 @@ export const pages = {
 
 const routes = [
   { name: pages.DESKS, path: '/' },
-  { name: pages.COLUMNS, path: '/desk' }
+  { name: pages.COLUMNS, path: '/desk/:deskId' }
 ];
 
 export const initialize = () => {
-  const router = createRouter(routes);
+  const router = createRouter(routes, {defaultRoute: pages.DESKS});
   router.usePlugin(browserPlugin());
   router.start();
 

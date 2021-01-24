@@ -11,7 +11,7 @@ import Context from '../App/context';
 const DeskItem = ({ id, children }) => {
   const router = useRouter();
   const { removeDesk } = useContext(Context);
-  const goToColumnPanel = () => router.navigate(pages.COLUMNS);
+  const goToColumnPanel = () => router.navigate(pages.COLUMNS, { deskId: id });
 
   const deleteItem = (event) => {
     event.stopPropagation();
